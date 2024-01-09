@@ -21,7 +21,9 @@ class Bank {
         void displayBalance() const;
         void addToDeposit(const std::string & prompt);
         void withdrawDeposit(const std::string & prompt);
-        void updateRecords(const std::string & prompt);
+        void updateFirstName(std::string);
+
+        std::string getFirstName();
 };
 
 #endif // BANK_HPP

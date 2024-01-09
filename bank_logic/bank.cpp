@@ -65,20 +65,10 @@ void Bank::withdrawDeposit(const std::string & prompt) {
     }
 }
 
-void Bank::updateRecords(const std::string & prompt) {
-    std::cout << "1. First name" << std::endl;
-    std::cout << "2. Last name" << std::endl;
-    std::cout << "3. Address" << std::endl;
-    std::cout << "4. Phone number" << std::endl;
-    std::cout << "5. Balance" << std::endl;
-    std::cout << "6. Exit" << std::endl;
+void Bank::updateFirstName(std::string newValue) {
+    p_firstName = newValue;
+}
 
-    int updateKey;
-    std::string temp;
-
-    do {
-        if (updateKey == 1) {
-            p_firstName == std::getline(std::cin, temp);
-        }
-    } while (updateKey != 6) 
+std::string Bank::getFirstName() {
+    return p_firstName;
 }

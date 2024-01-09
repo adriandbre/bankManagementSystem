@@ -22,6 +22,7 @@ void clearScreen() {
 
 void displayMenu() {
     std::cout << "Internal Banking System" << std::endl;
+    std::cout << std::endl;
     std::cout << "Please select an option: " << std::endl;
 
     std::cout << "1. Open Account" << std::endl;
@@ -31,6 +32,17 @@ void displayMenu() {
     std::cout << "5. Update Records" << std::endl;
     std::cout << "6. Delete Account" << std::endl;
     std::cout << "7. Exit" << std::endl;
+}
+
+
+void displayUpdateMenu() {
+    std::cout << "Please select an option: " << std::endl;
+    std::cout << "1. First name" << std::endl;
+    std::cout << "2. Last name" << std::endl;
+    std::cout << "3. Address" << std::endl;
+    std::cout << "4. Phone number" << std::endl;
+    std::cout << "5. Balance" << std::endl;
+    std::cout << "6. Exit" << std::endl;
 }
 
 void showChanges(const std::string & prompt) {
@@ -45,6 +57,20 @@ void returnMenu () {
 
     clearScreen();
     displayMenu();
+}
+
+std::string getInputWithDefault(const std::string & prompt, const std::string defaultValue) {
+    std::string userInput;
+
+    std::cout << prompt << " (default: " << defaultValue << "): " << std::endl;
+
+    std::getline(std::cin, userInput);
+
+    if (userInput.empty()) {
+        userInput = defaultValue;
+    }
+    
+    return userInput;
 }
 
 
@@ -96,6 +122,36 @@ int main(int argc, char * argv[]) {
             returnMenu();
         } else if (key == 5) {
             clearInputBuffer();
+            clearScreen();
+            displayUpdateMenu();
+
+            int updateKey;
+            std::cout << "Chose data to update: ";
+            std::cin >> updateKey;
+
+            if (updateKey == 1) {
+                clearInputBuffer();
+                std::string value = newAccount.getFirstName();
+                std::cout << "Original Name: " << value << std::endl;
+
+                value = getInputWithDefault("Enter a new name", value);
+
+                std::cout << "Modified Name: " << value << std::endl;
+                newAccount.updateFirstName(value);
+
+                returnMenu();
+            } else if (updateKey == 2) {
+                std::cout << "Change last name.";
+            } else if (updateKey == 3) {
+                std::cout << "Change address.";
+            } else if (updateKey == 4) {
+                std::cout << "Change phone number.";
+            } else if (updateKey == 5) {
+                std::cout << "Change balance.";
+            } else {
+                returnMenu();
+            }
+
         }
     } while (key != 7);
 
